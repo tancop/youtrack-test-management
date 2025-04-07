@@ -3,4 +3,15 @@
   flex-direction: column;
   gap: calc(var(--ring-unit) * 2);
   margin: calc(var(--ring-unit) / 2);
+
+  .list-entry {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--ring-unit) * 2);
+  }
+
+  .toggle {
+    margin-top: calc(var(--ring-unit));
+    margin-left: calc(var(--ring-unit) * 2);
+  }
 }
