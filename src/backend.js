@@ -28,17 +28,12 @@ exports.httpHandler = {
                 /** @type {string[]} */
                 let issueRefs = JSON.parse(search.search(undefined, '')).map(ref => ref.id);
 
-                // Get the issue objects for all of them
-                /** @type {Issue[]} */
-                let issues = [];
-                for (const ref of issueRefs) {
-                    issues.push(entities.Issue.findById(ref));
-                }
+                let issue = entities.Issue.findById(issueRefs[0]);
 
                 // Get the YouTrack instance base URL by stripping last two parts
                 // example.youtrack.cloud/issues/DEMO-1 -> example.youtrack.cloud
                 const LAST_URL_SLICES = 2;
-                let urlSlices = issues[0].url.split('/');
+                let urlSlices = issue.url.split('/');
                 let baseUrl = urlSlices.slice(0, urlSlices.length - LAST_URL_SLICES).join('/');
 
                 // Return project info to the user
