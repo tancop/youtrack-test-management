@@ -1,4 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const entities = require("@jetbrains/youtrack-scripting-api/entities");
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const search = require("@jetbrains/youtrack-scripting-api/search");
 
 exports.httpHandler = {
@@ -20,7 +22,7 @@ exports.httpHandler = {
         },
         {
             method: 'GET',
-            path: 'getProjects',
+            path: 'getBaseUrl',
             handle: async function handle(ctx) {
                 // Search for all issues visible to the user
                 /** @type {string[]} */
@@ -39,24 +41,8 @@ exports.httpHandler = {
                 let urlSlices = issues[0].url.split('/');
                 let baseUrl = urlSlices.slice(0, urlSlices.length - LAST_URL_SLICES).join('/');
 
-                /** @type {Project[]} */
-                let projects = []
-
-                // Get all unique projects from the issues
-                for (const issue of issues) {
-                    let project = issue.project;
-                    if (!projects.some(existing => existing.key === project.key)) {
-                        projects.push(project);
-                    }
-                }
-
                 // Return project info to the user
-                await ctx.response.json(projects.map(proj => ({
-                    name: proj.name,
-                    key: proj.key,
-                    //
-                    href: `${baseUrl}/projects/${proj.key}`,
-                })));
+                await ctx.response.json({value: baseUrl});
             }
         }
     ]
