@@ -1,0 +1,21 @@
+{
+  "name": "test-management",
+  "title": "Test Management",
+  "description": "",
+  "$schema": "https://json.schemastore.org/youtrack-app.json",
+  "vendor": {
+    "name": "Teodor Potancok",
+    "url": "https://github.com/tancop"
+  },
+  "icon": "icon.svg",
+  "widgets": [
+    {
+      "key": "test-management",
+      "name": "Test Management",
+      "indexPath": "test-management/index.html",
+      "extensionPoint": "MAIN_MENU_ITEM",
+      "iconPath": "test-management/widget-icon.svg",
+      "description": "Test management page"
+    }
+  ]
+}
